@@ -136,20 +136,25 @@ export function computeVisibleDays(
   containerWidth: number,
   preferredDays: number,
 ): number {
-  const cellWidth = containerWidth / preferredDays;
-  if (cellWidth >= 40) {
-    return preferredDays;
+  if (containerWidth <= 0) {
+    return 7;
   }
-  if (containerWidth / 10 >= 40) {
-    return 10;
+
+  const usableWidth = Math.max(containerWidth - 48, 120);
+
+  for (const days of [preferredDays, 10, 7, 5]) {
+    if (usableWidth / days >= 28) {
+      return days;
+    }
   }
-  return 7;
+
+  return 5;
 }
 
 export function computeBarSize(cellWidth: number): number {
-  return Math.max(3, Math.min(14, cellWidth / 4));
+  return Math.max(2, Math.min(12, Math.floor(cellWidth / 5)));
 }
 
 export function shouldRotateLabels(cellWidth: number): boolean {
-  return cellWidth < 60;
+  return cellWidth < 52;
 }

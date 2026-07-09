@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { appStrings } from '../i18n/appStrings';
 import { useMeasurements } from '../hooks/useMeasurements';
-import { useWindowSize } from '../hooks/useWindowSize';
 import type { Measurement, MeasurementInput } from '../types/measurement';
 import { AppHeader } from './AppHeader';
 import { VitalBarChart } from './VitalBarChart';
@@ -16,15 +15,8 @@ type WizardMode = 'none' | 'add' | 'edit' | 'export';
 export function MainScreen() {
   const { measurements, loading, error, add, update, remove } =
     useMeasurements();
-  const { width } = useWindowSize();
   const [wizardMode, setWizardMode] = useState<WizardMode>('none');
   const [editing, setEditing] = useState<Measurement | null>(null);
-
-  const chartWidth = useMemo(() => {
-    if (width < 900) return width - 48;
-    if (width < 1400) return (width - 64) / 2;
-    return (width - 80) / 3;
-  }, [width]);
 
   const handleSave = async (input: MeasurementInput, id?: number) => {
     if (id) {
@@ -62,19 +54,16 @@ export function MainScreen() {
           measurements={measurements}
           metric="pulseBpm"
           title={appStrings.pulseLabel}
-          containerWidth={chartWidth}
         />
         <VitalBarChart
           measurements={measurements}
           metric="systolic"
           title={appStrings.systolicLabel}
-          containerWidth={chartWidth}
         />
         <VitalBarChart
           measurements={measurements}
           metric="diastolic"
           title={appStrings.diastolicLabel}
-          containerWidth={chartWidth}
         />
       </section>
 

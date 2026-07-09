@@ -4,13 +4,13 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 import { CHART_VISIBLE_DAYS, chartThresholds, COLORS } from '../constants/chartThresholds';
 import { appStrings } from '../i18n/appStrings';
+import { useElementSize } from '../hooks/useElementSize';
 import {
   buildChartData,
   computeBarSize,
@@ -28,7 +28,6 @@ interface VitalBarChartProps {
   measurements: Measurement[];
   metric: VitalMetric;
   title: string;
-  containerWidth: number;
 }
 
 interface TooltipPayload {
@@ -42,13 +41,22 @@ interface TooltipPayload {
   };
 }
 
+const Y_AXIS_WIDTH = 36;
+const CHART_MARGIN = {
+  top: 8,
+  right: 8,
+  bottom: 4,
+  left: 4,
+} as const;
+
 export function VitalBarChart({
   measurements,
   metric,
   title,
-  containerWidth,
 }: VitalBarChartProps) {
-  const chartRef = useRef<HTMLDivElement>(null);
+  const chartBodyRef = useRef<HTMLDivElement>(null);
+  const { width: containerWidth, height: containerHeight } =
+    useElementSize(chartBodyRef);
   const [dayOffset, setDayOffset] = useState(0);
 
   const visibleDays = useMemo(
@@ -66,10 +74,21 @@ export function VitalBarChart({
     [measurements, metric],
   );
 
-  const cellWidth = containerWidth / Math.max(chartData.length, 1);
+  const cellWidth =
+    containerWidth > 0
+      ? (containerWidth - Y_AXIS_WIDTH - CHART_MARGIN.left - CHART_MARGIN.right) /
+        Math.max(chartData.length, 1)
+      : 0;
   const barSize = computeBarSize(cellWidth);
   const rotate = shouldRotateLabels(cellWidth);
   const unit = chartThresholds[metric].unit;
+  const xAxisHeight = rotate ? 44 : 28;
+  const legendHeight = 28;
+  const deltaRowHeight = 24;
+  const plotHeight = Math.max(
+    120,
+    containerHeight - xAxisHeight - legendHeight - deltaRowHeight,
+  );
 
   const rechartsData = chartData.map((d) => ({
     ...d,
@@ -84,7 +103,7 @@ export function VitalBarChart({
     new Set(measurements.map((m) => m.date)).size;
 
   return (
-    <div className={styles.chartCard} ref={chartRef}>
+    <div className={styles.chartCard}>
       <div className={styles.chartHeader}>
         <h3 className={styles.chartTitle}>{title}</h3>
         {latestDelta && (
@@ -98,25 +117,42 @@ export function VitalBarChart({
         )}
       </div>
 
-      <div className={styles.chartBody}>
-        <ResponsiveContainer width="100%" height="100%">
+      <div className={styles.chartBody} ref={chartBodyRef}>
+        {containerWidth > 0 && containerHeight > 0 && (
           <BarChart
+            width={containerWidth}
+            height={plotHeight}
             data={rechartsData}
-            margin={{ top: 24, right: 16, bottom: 8, left: 48 }}
+            margin={CHART_MARGIN}
             barGap={1}
-            barCategoryGap="18%"
+            barCategoryGap="20%"
           >
             <CartesianGrid strokeDasharray="3 3" stroke={COLORS.border} />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: 12, fill: COLORS.textMuted }}
-              angle={rotate ? -45 : 0}
+              tick={{ fontSize: 10, fill: COLORS.textMuted }}
+              angle={rotate ? -40 : 0}
               textAnchor={rotate ? 'end' : 'middle'}
-              height={rotate ? 50 : 30}
+              height={xAxisHeight}
               interval={0}
             />
-            <YAxis tick={{ fontSize: 12, fill: COLORS.textMuted }} width={42} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: COLORS.textMuted }} />
+            <YAxis
+              tick={{ fontSize: 10, fill: COLORS.textMuted }}
+              width={Y_AXIS_WIDTH}
+            />
+            <Legend
+              layout="horizontal"
+              align="center"
+              verticalAlign="top"
+              iconSize={8}
+              wrapperStyle={{
+                fontSize: '10px',
+                color: COLORS.textMuted,
+                width: '100%',
+                left: 0,
+                paddingBottom: 4,
+              }}
+            />
             <Tooltip
               content={({ active, payload }) => {
                 if (!active || !payload?.length) return null;
@@ -172,10 +208,14 @@ export function VitalBarChart({
               radius={[2, 2, 0, 0]}
             />
           </BarChart>
-        </ResponsiveContainer>
+        )}
       </div>
 
-      <DeltaLabelRow data={chartData} />
+      <DeltaLabelRow
+        data={chartData}
+        marginLeft={Y_AXIS_WIDTH + CHART_MARGIN.left}
+        marginRight={CHART_MARGIN.right}
+      />
 
       {canShowMore && (
         <button

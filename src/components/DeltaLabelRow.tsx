@@ -4,11 +4,23 @@ import styles from '../styles/charts.module.css';
 
 interface DeltaLabelRowProps {
   data: DayChartData[];
+  marginLeft: number;
+  marginRight: number;
 }
 
-export function DeltaLabelRow({ data }: DeltaLabelRowProps) {
+export function DeltaLabelRow({
+  data,
+  marginLeft,
+  marginRight,
+}: DeltaLabelRowProps) {
   return (
-    <div className={styles.deltaRow}>
+    <div
+      className={styles.deltaRow}
+      style={{
+        paddingLeft: marginLeft,
+        paddingRight: marginRight,
+      }}
+    >
       {data.map((day) => (
         <DeltaText key={day.date} delta={day.delta} />
       ))}

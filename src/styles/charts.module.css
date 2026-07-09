@@ -5,9 +5,11 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 2px 8px var(--shadow);
-  padding: 12px 12px 8px;
+  padding: 10px 10px 6px;
+  min-width: 0;
   min-height: 0;
-  overflow: visible;
+  height: 100%;
+  overflow: hidden;
 }
 
 .chartHeader {
@@ -17,14 +19,14 @@
 
 .chartTitle {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   font-weight: 600;
   color: var(--accent);
 }
 
 .chartSummary {
   margin: 4px 0 0;
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   color: var(--text-muted);
   display: flex;
   align-items: baseline;
@@ -40,16 +42,21 @@
 
 .chartBody {
   flex: 1;
-  min-height: 160px;
-  overflow: visible;
+  min-height: 140px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .deltaRow {
   display: flex;
   justify-content: space-around;
-  padding: 4px 48px 0 48px;
+  padding-top: 2px;
   flex-shrink: 0;
   gap: 2px;
+  min-height: 22px;
 }
 
 .deltaLabel {
@@ -59,7 +66,7 @@
   justify-content: center;
   gap: 2px;
   text-align: center;
-  font-size: clamp(13px, 1.25vw, 17px);
+  font-size: clamp(10px, 1.1vw, 14px);
   font-weight: 600;
   min-width: 0;
   overflow: hidden;
@@ -100,13 +107,13 @@
 
 .showMoreChip {
   align-self: center;
-  margin-top: 6px;
-  padding: 4px 12px;
+  margin-top: 4px;
+  padding: 3px 10px;
   border: 1px solid var(--accent);
   border-radius: 16px;
   background: transparent;
   color: var(--accent);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
