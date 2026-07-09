@@ -1,0 +1,47 @@
+.button {
+  min-height: 56px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.primary:not(:disabled):hover {
+  background: var(--accent-hover);
+}
+
+.secondary {
+  background: var(--bg-card);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.secondary:not(:disabled):hover {
+  background: var(--bg-hover);
+}
+
+.danger {
+  background: var(--error);
+  color: #ffffff;
+}
+
+.danger:not(:disabled):hover {
+  background: #dc2626;
+}

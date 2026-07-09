@@ -1,0 +1,58 @@
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.chartArea {
+  flex: 0 0 45%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px 20px 8px;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.actionBar {
+  display: flex;
+  gap: 16px;
+  padding: 8px 20px 12px;
+  flex-shrink: 0;
+}
+
+.logArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 20px;
+  min-height: 0;
+}
+
+.status {
+  padding: 8px 20px;
+  color: var(--text-muted);
+}
+
+.error {
+  padding: 8px 20px;
+  color: var(--error);
+}
+
+@media (max-width: 1400px) {
+  .chartArea {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .chartArea {
+    grid-template-columns: 1fr;
+    flex: 0 0 50%;
+  }
+
+  .actionBar {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px;
+  text-align: center;
+  background: var(--bg);
+}
+
+.logo {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: 1.75rem;
+  color: var(--accent);
+}
+
+.message {
+  max-width: 520px;
+  font-size: 1.2rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.command {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--bg-hover);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.hint {
+  max-width: 480px;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}

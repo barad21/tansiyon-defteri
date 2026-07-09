@@ -1,0 +1,115 @@
+.chartCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow);
+  padding: 12px 12px 8px;
+  min-height: 0;
+  overflow: visible;
+}
+
+.chartHeader {
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+
+.chartTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.chartSummary {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.deltaUnit {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.chartBody {
+  flex: 1;
+  min-height: 160px;
+  overflow: visible;
+}
+
+.deltaRow {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px 48px 0 48px;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.deltaLabel {
+  flex: 1;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  font-size: clamp(13px, 1.25vw, 17px);
+  font-weight: 600;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deltaSymbol {
+  font-family: 'GFS Didot', 'Times New Roman', 'Noto Serif', serif;
+  font-size: 1.45em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.deltaValue {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.deltaInline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.tooltip {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--text);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.showMoreChip {
+  align-self: center;
+  margin-top: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.showMoreChip:hover {
+  background: var(--bg-hover);
+}

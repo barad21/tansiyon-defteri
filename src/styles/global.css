@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #141820;
+  --bg-elevated: #1e2430;
+  --bg-card: #1e2430;
+  --bg-input: #2a3344;
+  --bg-hover: #252d3b;
+  --accent: #6b9fd4;
+  --accent-hover: #8bb8e8;
+  --accent-muted: #5a8ac4;
+  --header-brown: #a68b6a;
+  --text: #e8ecf4;
+  --text-muted: #9aa8bc;
+  --success: #22c55e;
+  --error: #ef4444;
+  --border: #3a4558;
+  --overlay: rgba(8, 10, 14, 0.72);
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button {
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+  font-size: 1.1rem;
+  color: var(--text);
+  background: var(--bg-input);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.rdp-root {
+  --rdp-accent-color: var(--accent);
+  --rdp-accent-background-color: var(--bg-hover);
+  --rdp-background-color: var(--bg-elevated);
+  --rdp-color: var(--text);
+  --rdp-outline: 2px solid var(--accent);
+  font-size: 1.1rem;
+}
+
+.rdp-day {
+  width: 48px;
+  height: 48px;
+}
+
+.rdp-day_button {
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.rdp-selected .rdp-day_button {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.rdp-today:not(.rdp-selected) .rdp-day_button {
+  border: 2px solid var(--header-brown);
+}
+
+.rdp-disabled .rdp-day_button {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.rdp-caption_label,
+.rdp-weekday {
+  color: var(--text);
+}
+
+.rdp-nav_button {
+  color: var(--text);
+}

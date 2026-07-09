@@ -1,0 +1,345 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.wizard {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 40px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.closeButton:hover {
+  color: var(--text);
+  background: var(--bg-input);
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+}
+
+.calendarWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.calendar {
+  transform: scale(1.15);
+  margin: 20px 0;
+}
+
+.periodGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.periodCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 140px;
+  padding: 24px;
+  border: 3px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.periodCard:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+
+.periodCard.selected {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+
+.periodCard:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.periodIcon {
+  font-size: 2.5rem;
+}
+
+.periodCard small {
+  font-size: 0.85rem;
+  color: var(--error);
+  font-weight: 400;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wizardValuesStep {
+  padding: 20px 28px 24px;
+  overflow-y: visible;
+}
+
+.wizardEdit {
+  max-height: none;
+}
+
+.wizardValuesStep .title {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.valuesForm {
+  gap: 10px;
+}
+
+.valuesForm .readingSection {
+  gap: 6px;
+}
+
+.valuesForm .sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.valuesForm .readingGrid {
+  gap: 10px;
+}
+
+.valuesForm .readingGrid label {
+  font-size: 0.78rem;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.valuesForm .readingGrid input {
+  min-height: 36px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+.valuesForm .sectionDivider {
+  margin: 2px 0;
+}
+
+.valuesForm .navRow {
+  margin-top: 6px;
+  gap: 12px;
+}
+
+.compactButton {
+  min-height: 42px !important;
+  padding: 8px 20px !important;
+  font-size: 0.95rem !important;
+}
+
+.readingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+}
+
+.readingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.readingGrid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.readingGrid input,
+.formGrid input {
+  min-height: 56px;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 1.3rem;
+  background: var(--bg-input);
+  color: var(--text);
+}
+
+.readingGrid input:focus,
+.formGrid input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.sectionDivider {
+  border: none;
+  border-top: 2px dashed var(--border);
+  margin: 8px 0;
+}
+
+.navRow {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.periodGrid .navRow {
+  grid-column: 1 / -1;
+}
+
+.error {
+  color: var(--error);
+  text-align: center;
+  margin-top: 16px;
+  font-size: 1rem;
+}
+
+.doneBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.success {
+  color: var(--success);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.exportStep {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.presetChips {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.presetChips button {
+  padding: 10px 20px;
+  border: 2px solid var(--accent);
+  border-radius: 24px;
+  background: var(--bg-card);
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.presetChips button:hover {
+  background: var(--bg-hover);
+}
+
+.dateRangeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  justify-items: center;
+}
+
+.dateRangeGrid h3 {
+  text-align: center;
+  color: var(--header-brown);
+  margin-bottom: 8px;
+}
+
+.previewTable {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.previewTable table {
+  width: 100%;
+}
+
+.previewTable th {
+  background: var(--header-brown);
+  color: #ffffff;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.previewTable td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  .periodGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dateRangeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .readingGrid {
+    grid-template-columns: 1fr;
+  }
+}
