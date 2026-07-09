@@ -45,7 +45,6 @@ npm run tauri build
 src/           React frontend (TypeScript)
 src-tauri/     Rust backend + SQLite via tauri-plugin-sql
 Logo/          App logo source (logo.png)
-Photos/        Reference logbook images
 ```
 
 ## Turkish UI / English Code

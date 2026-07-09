@@ -28,3 +28,6 @@ npm-debug.log*
 
 # Tauri gen
 src-tauri/gen/
+
+# Personal / local-only assets
+Photos/
